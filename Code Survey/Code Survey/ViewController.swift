@@ -9,10 +9,13 @@
 import UIKit
 
 class ViewController: UICollectionViewController {
+    
+    var survey:Survey!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        survey = Survey(URL: NSBundle.mainBundle().URLForResource("survey", withExtension: "json")!)
+        survey.trackHiding = true
     }
 
     override func didReceiveMemoryWarning() {

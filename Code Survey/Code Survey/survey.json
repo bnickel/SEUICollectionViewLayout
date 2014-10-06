@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Programming Languages",
+    "questions": [
+      {
+        "id": "lang-javascript",
+        "label": "JavaScript",
+        "type": "checkbox"
+      },
+      {
+        "id": "lang-javascript-node",
+        "label": "NodeJS",
+        "type": "checkbox",
+        "indent": 1
+      },
+      {
+        "id": "lang-javascript-jquery",
+        "label": "jQuery",
+        "type": "checkbox",
+        "indent": 1
+      },
+      {
+        "id": "lang-ios",
+        "label": "Native iOS",
+        "type": "checkbox"
+      },
+      {
+        "id": "lang-ios-objc",
+        "label": "Objective-C",
+        "type": "checkbox",
+        "indent": 1
+      },
+      {
+        "id": "lang-ios-swift",
+        "label": "Swift",
+        "type": "checkbox",
+        "indent": 1
+      },
+      {
+        "id": "lang-ios-coredata",
+        "label": "CoreData",
+        "type": "checkbox",
+        "indent": 1
+      },
+      {
+        "id": "lang-other",
+        "label": "Other",
+        "type": "checkbox"
+      },
+      {
+        "id": "lang-other-text",
+        "label": "Please specify",
+        "type": "big-text",
+        "show-if": "lang-other=true"
+      },
+    ]
+  }
+]
