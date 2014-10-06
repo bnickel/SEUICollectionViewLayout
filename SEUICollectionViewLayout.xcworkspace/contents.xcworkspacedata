@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Code Survey/Code Survey.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SEUICollectionViewLayout/SEUICollectionViewLayout.xcodeproj">
    </FileRef>
 </Workspace>
