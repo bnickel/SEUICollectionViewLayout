@@ -1,0 +1,247 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB9C26F119E319C800AB1695 /* SEUICollectionViewLayout.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB9C26F019E319C800AB1695 /* SEUICollectionViewLayout.h */; };
+		EB9C26F319E319C800AB1695 /* SEUICollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9C26F219E319C800AB1695 /* SEUICollectionViewLayout.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB9C26EB19E319C800AB1695 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				EB9C26F119E319C800AB1695 /* SEUICollectionViewLayout.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EB9C26ED19E319C800AB1695 /* libSEUICollectionViewLayout.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSEUICollectionViewLayout.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9C26F019E319C800AB1695 /* SEUICollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEUICollectionViewLayout.h; sourceTree = "<group>"; };
+		EB9C26F219E319C800AB1695 /* SEUICollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEUICollectionViewLayout.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB9C26EA19E319C800AB1695 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB9C26E419E319C800AB1695 = {
+			isa = PBXGroup;
+			children = (
+				EB9C26EF19E319C800AB1695 /* SEUICollectionViewLayout */,
+				EB9C26EE19E319C800AB1695 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB9C26EE19E319C800AB1695 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB9C26ED19E319C800AB1695 /* libSEUICollectionViewLayout.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB9C26EF19E319C800AB1695 /* SEUICollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				EB9C26F019E319C800AB1695 /* SEUICollectionViewLayout.h */,
+				EB9C26F219E319C800AB1695 /* SEUICollectionViewLayout.m */,
+			);
+			path = SEUICollectionViewLayout;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB9C26EC19E319C800AB1695 /* SEUICollectionViewLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB9C270119E319C800AB1695 /* Build configuration list for PBXNativeTarget "SEUICollectionViewLayout" */;
+			buildPhases = (
+				EB9C26E919E319C800AB1695 /* Sources */,
+				EB9C26EA19E319C800AB1695 /* Frameworks */,
+				EB9C26EB19E319C800AB1695 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SEUICollectionViewLayout;
+			productName = SEUICollectionViewLayout;
+			productReference = EB9C26ED19E319C800AB1695 /* libSEUICollectionViewLayout.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB9C26E519E319C800AB1695 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Brian Nickel";
+				TargetAttributes = {
+					EB9C26EC19E319C800AB1695 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = EB9C26E819E319C800AB1695 /* Build configuration list for PBXProject "SEUICollectionViewLayout" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EB9C26E419E319C800AB1695;
+			productRefGroup = EB9C26EE19E319C800AB1695 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB9C26EC19E319C800AB1695 /* SEUICollectionViewLayout */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB9C26E919E319C800AB1695 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB9C26F319E319C800AB1695 /* SEUICollectionViewLayout.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EB9C26FF19E319C800AB1695 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EB9C270019E319C800AB1695 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB9C270219E319C800AB1695 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EB9C270319E319C800AB1695 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB9C26E819E319C800AB1695 /* Build configuration list for PBXProject "SEUICollectionViewLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9C26FF19E319C800AB1695 /* Debug */,
+				EB9C270019E319C800AB1695 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB9C270119E319C800AB1695 /* Build configuration list for PBXNativeTarget "SEUICollectionViewLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9C270219E319C800AB1695 /* Debug */,
+				EB9C270319E319C800AB1695 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB9C26E519E319C800AB1695 /* Project object */;
+}
