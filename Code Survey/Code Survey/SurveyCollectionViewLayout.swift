@@ -12,12 +12,52 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
     
     var lines:[(CGRect, [UICollectionViewLayoutAttributes])] = []
     
+    var checkboxSize:CGSize = CGSizeMake(10, 10) {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    
+    var textSize:CGSize = CGSizeMake(100, 50) {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    
+    var bigTextHeight:CGFloat = 50 {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    
+    var itemSpacing:CGFloat = 10 {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    
+    var margin:CGFloat = 10 {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    
+    var maxWidth:CGFloat = 500 {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    
     override func prepareLayout() {
         beginPreparingLayout()
         lines.removeAll(keepCapacity: true)
         
-        let width = CGRectGetWidth(self.collectionView!.bounds)
-        let xOffset:CGFloat = 0
+        let collectionViewBounds = collectionView!.bounds
+        
+        let width = round(fmin(CGRectGetWidth(collectionViewBounds) - 2 * margin, maxWidth))
+        let xOffset:CGFloat = round(CGRectGetMidX(collectionViewBounds) - width / 2)
+        var yOffset:CGFloat = margin
+
         
         var line:[UICollectionViewLayoutAttributes] = []
         var totalRect = CGRectNull
@@ -39,8 +79,6 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             return retValue
         }
         
-        var yOffset:CGFloat = 0
-        
         for section in 0 ..< self.collectionView!.numberOfSections() {
             
             for item in 0 ..< self.collectionView!.numberOfItemsInSection(section) {
@@ -51,11 +89,11 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
                 setLayoutAttributes(cellAttributes, forItemAtIndexPath: indexPath)
                 addToLine(cellAttributes)
                 
-                yOffset = CGRectGetMaxY(commitLine()) + 10
+                yOffset = CGRectGetMaxY(commitLine()) + itemSpacing
             }
         }
         
-        _collectionViewContentSize = CGSizeMake(width, yOffset)
+        _collectionViewContentSize = CGSizeMake(width, yOffset - itemSpacing + margin)
         
         endPreparingLayout()
     }
