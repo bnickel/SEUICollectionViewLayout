@@ -3,6 +3,11 @@
     "name": "Programming Languages",
     "questions": [
       {
+        "id": "lang-best",
+        "label": "Favorite Language",
+        "type": "text"
+      },
+      {
         "id": "lang-javascript",
         "label": "JavaScript",
         "type": "checkbox"

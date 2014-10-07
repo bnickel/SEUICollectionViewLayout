@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TextCell: UICollectionViewCell, UITextFieldDelegate {
+class TextCell: UICollectionViewCell, ItemHolder, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     
@@ -23,7 +23,7 @@ class TextCell: UICollectionViewCell, UITextFieldDelegate {
     }
     
     class var nib:UINib? {
-        return UINib(nibName: "BigTextCell", bundle: nil)
+        return UINib(nibName: "TextCell", bundle: nil)
     }
 
 }
