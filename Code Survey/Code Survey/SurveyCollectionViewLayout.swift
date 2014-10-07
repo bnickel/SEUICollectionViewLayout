@@ -10,7 +10,7 @@ import UIKit
 
 class SurveyCollectionViewLayout: SEUICollectionViewLayout {
     
-    var lines:[(CGRect, [UICollectionViewLayoutAttributes])] = []
+    // MARK: - Properties
     
     var checkboxSize:CGSize = CGSizeMake(10, 10) {
         didSet {
@@ -48,6 +48,36 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         }
     }
     
+    // MARK: - Delegate wrappers
+    
+    private var collectionViewDelegate: UICollectionViewDelegateSurveyLayout {
+        if let delegate = collectionView?.delegate as? UICollectionViewDelegateSurveyLayout {
+            return delegate
+        } else if collectionView == nil {
+            assertionFailure("No collection view.")
+        } else if collectionView?.delegate == nil {
+            assertionFailure("No collection view delegate.")
+        } else {
+            assertionFailure("Collection view delegate does not conform to UICollectionViewDelegateSurveyLayout")
+        }
+    }
+    
+    private func itemTypeForIndexPath(indexPath: NSIndexPath) -> ItemType {
+        return ItemType(rawValue: collectionViewDelegate.collectionView(collectionView, layout: self, itemTypeForIndexPath: indexPath))!
+    }
+    
+    private func sizeForItemLabelWithWidth(labelWidth:CGFloat, indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(labelWidth, collectionViewDelegate.collectionView(collectionView, layout: self, heightForItemLabelWithWidth: labelWidth, atIndexPath: indexPath))
+    }
+    
+    private func sizeForSectionHeadingWithWidth(labelWidth:CGFloat, indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(labelWidth, collectionViewDelegate.collectionView(collectionView, layout: self, heightForSectionHeadingWithWidth: labelWidth, atIndexPath: indexPath))
+    }
+    
+    // MARK: - Layout methods
+    
+    var lines:[(CGRect, [UICollectionViewLayoutAttributes])] = []
+    
     override func prepareLayout() {
         beginPreparingLayout()
         lines.removeAll(keepCapacity: true)
@@ -57,7 +87,6 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         let width = round(fmin(CGRectGetWidth(collectionViewBounds) - 2 * margin, maxWidth))
         let xOffset:CGFloat = round(CGRectGetMidX(collectionViewBounds) - width / 2)
         var yOffset:CGFloat = margin
-
         
         var line:[UICollectionViewLayoutAttributes] = []
         var totalRect = CGRectNull
@@ -98,7 +127,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         endPreparingLayout()
     }
     
-    var _collectionViewContentSize:CGSize = CGSizeZero
+    private var _collectionViewContentSize:CGSize = CGSizeZero
     override func collectionViewContentSize() -> CGSize {
         return _collectionViewContentSize
     }
@@ -118,5 +147,8 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
     }
 }
 
-protocol UICollectionViewDelegateSurveyLayout : UICollectionViewDelegateSEUILayout {
+@objc protocol UICollectionViewDelegateSurveyLayout : UICollectionViewDelegateSEUILayout {
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String /* Cannot pass item type to @objc protocol */
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForItemLabelWithWidth labelWidth:CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth:CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat
 }

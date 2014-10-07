@@ -51,12 +51,24 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: SEUICollectionViewLayout, uniqueIdentifierForSection section: UInt) -> NSCopying! {
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SEUICollectionViewLayout!, uniqueIdentifierForSection section: UInt) -> NSCopying! {
         return section
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: SEUICollectionViewLayout, uniqueIdentifierForItemAtIndexPath indexPath: NSIndexPath) -> NSCopying! {
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SEUICollectionViewLayout!, uniqueIdentifierForItemAtIndexPath indexPath: NSIndexPath!) -> NSCopying! {
         return indexPath
+    }
+    
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForItemLabelWithWidth labelWidth: CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth: CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String {
+        return surveyItem(indexPath).type.rawValue
     }
 }
 
