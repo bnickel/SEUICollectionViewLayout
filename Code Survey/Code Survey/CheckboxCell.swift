@@ -25,4 +25,9 @@ class CheckboxCell: UICollectionViewCell, ItemHolder {
     class var nib:UINib? {
         return UINib(nibName: "CheckboxCell", bundle: nil)
     }
+    
+    class var preferredSize:CGSize {
+        let cell = nib!.instantiateWithOwner(nil, options: nil).first as CheckboxCell
+        return cell.`switch`.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+    }
 }

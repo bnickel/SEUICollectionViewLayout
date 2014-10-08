@@ -21,6 +21,12 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         survey = Survey(URL: NSBundle.mainBundle().URLForResource("survey", withExtension: "json")!)
         survey.trackHiding = true
         
+        let layout = collectionViewLayout as SurveyCollectionViewLayout
+        layout.checkboxSize = CheckboxCell.preferredSize
+        layout.textSize = CGSize(width: 200, height: TextCell.preferredHeight)
+        layout.bigTextHeight = 100
+        layout.animateBoundsChanges = true
+        
         collectionView.registerNib(CheckboxCell.nib, forCellWithReuseIdentifier: ItemType.Checkbox.rawValue)
         collectionView.registerNib(BigTextCell.nib, forCellWithReuseIdentifier: ItemType.BigText.rawValue)
         collectionView.registerNib(TextCell.nib, forCellWithReuseIdentifier: ItemType.Text.rawValue)
@@ -63,7 +69,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         return 10
     }
     
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth: CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth: CGFloat, section: Int) -> CGFloat {
         return 10
     }
     

@@ -7,13 +7,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TextCell" customModule="Code_Survey" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="323" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="404" height="95"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="323" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="404" height="95"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="APd-D3-qzi">
-                        <rect key="frame" x="0.0" y="10" width="323" height="30"/>
+                        <rect key="frame" x="0.0" y="33" width="404" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
@@ -28,11 +28,11 @@
                 <constraint firstAttribute="centerY" secondItem="APd-D3-qzi" secondAttribute="centerY" id="XgF-l6-de3"/>
                 <constraint firstItem="APd-D3-qzi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="h2t-64-npB"/>
             </constraints>
-            <size key="customSize" width="323" height="50"/>
+            <size key="customSize" width="404" height="95"/>
             <connections>
                 <outlet property="textField" destination="APd-D3-qzi" id="d1h-Ip-zep"/>
             </connections>
-            <point key="canvasLocation" x="192.5" y="542"/>
+            <point key="canvasLocation" x="233" y="564.5"/>
         </collectionViewCell>
     </objects>
 </document>

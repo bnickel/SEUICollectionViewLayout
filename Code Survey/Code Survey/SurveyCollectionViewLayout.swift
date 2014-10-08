@@ -8,6 +8,9 @@
 
 import UIKit
 
+let SurveyCollectionViewItemLabel = "SurveyCollectionViewItemLabel"
+let SurveyCollectionViewSectionHeader = "SurveyCollectionViewSectionHeader"
+
 class SurveyCollectionViewLayout: SEUICollectionViewLayout {
     
     // MARK: - Properties
@@ -70,8 +73,8 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         return CGSizeMake(labelWidth, collectionViewDelegate.collectionView(collectionView, layout: self, heightForItemLabelWithWidth: labelWidth, atIndexPath: indexPath))
     }
     
-    private func sizeForSectionHeadingWithWidth(labelWidth:CGFloat, indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(labelWidth, collectionViewDelegate.collectionView(collectionView, layout: self, heightForSectionHeadingWithWidth: labelWidth, atIndexPath: indexPath))
+    private func sizeForSectionHeadingWithWidth(labelWidth:CGFloat, section: Int) -> CGSize {
+        return CGSizeMake(labelWidth, collectionViewDelegate.collectionView(collectionView, layout: self, heightForSectionHeadingWithWidth: labelWidth, section: section))
     }
     
     // MARK: - Layout methods
@@ -91,9 +94,11 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         var line:[UICollectionViewLayoutAttributes] = []
         var totalRect = CGRectNull
         
-        func addToLine(attributes:UICollectionViewLayoutAttributes) {
-            line.append(attributes)
-            totalRect = CGRectUnion(totalRect, attributes.frame)
+        func addToLine(attributes:[UICollectionViewLayoutAttributes]) {
+            for attribute in attributes {
+                line.append(attribute)
+                totalRect = CGRectUnion(totalRect, attribute.frame)
+            }
         }
         
         func commitLine() -> CGRect {
@@ -108,21 +113,46 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             return retValue
         }
         
+        func sideBySideItems(indexPath:NSIndexPath, itemSize:CGSize) -> [UICollectionViewLayoutAttributes] {
+            
+            let labelSize = sizeForItemLabelWithWidth(width - itemSpacing, indexPath: indexPath)
+            let height = max(itemSize.height, labelSize.height)
+            let labelOrigin = CGPoint(x: xOffset, y: yOffset + (height - labelSize.height) / 2)
+            let itemOrigin = CGPoint(x: xOffset + width - itemSize.width, y: yOffset + (height - itemSize.height) / 2)
+            
+            let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+            cellAttributes.frame = CGRect(origin: itemOrigin, size: itemSize)
+            setLayoutAttributes(cellAttributes, forItemAtIndexPath: indexPath)
+            
+            let labelAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withIndexPath: indexPath)
+            
+            return [cellAttributes]
+        }
+        
+        func stackedItems(indexPath:NSIndexPath, height:CGFloat) -> [UICollectionViewLayoutAttributes] {
+            let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+            let labelAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withIndexPath: indexPath)
+            cellAttributes.frame = CGRectMake(xOffset, yOffset, width, height)
+            setLayoutAttributes(cellAttributes, forItemAtIndexPath: indexPath)
+            return [cellAttributes]
+        }
+        
         for section in 0 ..< self.collectionView!.numberOfSections() {
             
             for item in 0 ..< self.collectionView!.numberOfItemsInSection(section) {
                 
                 let indexPath = NSIndexPath(forItem: item, inSection: section)
-                let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-                cellAttributes.frame = CGRectMake(xOffset, yOffset, width, 30)
-                setLayoutAttributes(cellAttributes, forItemAtIndexPath: indexPath)
-                addToLine(cellAttributes)
+                switch itemTypeForIndexPath(indexPath) {
+                case .Text: addToLine(sideBySideItems(indexPath, textSize))
+                case .Checkbox: addToLine(sideBySideItems(indexPath, checkboxSize))
+                case .BigText: addToLine(stackedItems(indexPath, bigTextHeight))
+                }
                 
                 yOffset = CGRectGetMaxY(commitLine()) + itemSpacing
             }
         }
         
-        _collectionViewContentSize = CGSizeMake(width, yOffset - itemSpacing + margin)
+        _collectionViewContentSize = CGSizeMake(xOffset + width, yOffset - itemSpacing + margin)
         
         endPreparingLayout()
     }
@@ -150,5 +180,5 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
 @objc protocol UICollectionViewDelegateSurveyLayout : UICollectionViewDelegateSEUILayout {
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String /* Cannot pass item type to @objc protocol */
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForItemLabelWithWidth labelWidth:CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat
-    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth:CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth:CGFloat, section: Int) -> CGFloat
 }

@@ -25,5 +25,9 @@ class TextCell: UICollectionViewCell, ItemHolder, UITextFieldDelegate {
     class var nib:UINib? {
         return UINib(nibName: "TextCell", bundle: nil)
     }
-
+    
+    class var preferredHeight:CGFloat {
+        let cell = nib!.instantiateWithOwner(nil, options: nil).first as TextCell
+        return cell.textField.sizeThatFits(CGSizeZero).height
+    }
 }
