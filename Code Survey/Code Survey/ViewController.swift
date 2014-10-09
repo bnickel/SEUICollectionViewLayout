@@ -30,6 +30,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         collectionView.registerNib(CheckboxCell.nib, forCellWithReuseIdentifier: ItemType.Checkbox.rawValue)
         collectionView.registerNib(BigTextCell.nib, forCellWithReuseIdentifier: ItemType.BigText.rawValue)
         collectionView.registerNib(TextCell.nib, forCellWithReuseIdentifier: ItemType.Text.rawValue)
+        collectionView.registerNib(LabelView.nib, forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withReuseIdentifier: SurveyCollectionViewItemLabel)
     }
     
     func surveySection(section:Int) -> SurveySection {
@@ -57,6 +58,17 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         return cell
     }
     
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        switch kind {
+        case SurveyCollectionViewItemLabel:
+            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: kind, forIndexPath: indexPath) as LabelView
+            view.text = surveyItem(indexPath).label
+            return view
+        default:
+            assertionFailure("Unexpected supplementary element kind: \(kind)")
+        }
+    }
+    
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SEUICollectionViewLayout!, uniqueIdentifierForSection section: UInt) -> NSCopying! {
         return section
     }
@@ -66,7 +78,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForItemLabelWithWidth labelWidth: CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return 10
+        return LabelView.heightForText(surveyItem(indexPath).label, width: labelWidth)
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth: CGFloat, section: Int) -> CGFloat {
@@ -75,6 +87,10 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String {
         return surveyItem(indexPath).type.rawValue
+    }
+    
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, indentLevelForIndexPath indexPath: NSIndexPath!) -> Int {
+        return surveyItem(indexPath).indent
     }
 }
 

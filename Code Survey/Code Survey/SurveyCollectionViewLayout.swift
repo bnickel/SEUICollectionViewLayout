@@ -65,6 +65,10 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         }
     }
     
+    private func indentLevelForIndexPath(indexPath: NSIndexPath) -> Int {
+        return collectionViewDelegate.collectionView(collectionView, layout: self, indentLevelForIndexPath: indexPath)
+    }
+    
     private func itemTypeForIndexPath(indexPath: NSIndexPath) -> ItemType {
         return ItemType(rawValue: collectionViewDelegate.collectionView(collectionView, layout: self, itemTypeForIndexPath: indexPath))!
     }
@@ -113,11 +117,12 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             return retValue
         }
         
-        func sideBySideItems(indexPath:NSIndexPath, itemSize:CGSize) -> [UICollectionViewLayoutAttributes] {
+        func sideBySideItems(indexPath:NSIndexPath, itemSize:CGSize, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
             
-            let labelSize = sizeForItemLabelWithWidth(width - itemSpacing, indexPath: indexPath)
+            let indent = CGFloat(indentLevel) * itemSpacing * 2
+            let labelSize = sizeForItemLabelWithWidth(width - itemSpacing - itemSize.width - indent, indexPath: indexPath)
             let height = max(itemSize.height, labelSize.height)
-            let labelOrigin = CGPoint(x: xOffset, y: yOffset + (height - labelSize.height) / 2)
+            let labelOrigin = CGPoint(x: xOffset + indent, y: yOffset + (height - labelSize.height) / 2)
             let itemOrigin = CGPoint(x: xOffset + width - itemSize.width, y: yOffset + (height - itemSize.height) / 2)
             
             let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
@@ -125,16 +130,25 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             setLayoutAttributes(cellAttributes, forItemAtIndexPath: indexPath)
             
             let labelAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withIndexPath: indexPath)
+            labelAttributes.frame = CGRect(origin: labelOrigin, size: labelSize)
+            setLayoutAttributes(labelAttributes, forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, atIndexPath: indexPath)
             
-            return [cellAttributes]
+            return [labelAttributes, cellAttributes]
         }
         
-        func stackedItems(indexPath:NSIndexPath, height:CGFloat) -> [UICollectionViewLayoutAttributes] {
-            let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+        func stackedItems(indexPath:NSIndexPath, height:CGFloat, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
+            
+            let indent = CGFloat(indentLevel) * itemSpacing * 2
+            
             let labelAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withIndexPath: indexPath)
-            cellAttributes.frame = CGRectMake(xOffset, yOffset, width, height)
+            labelAttributes.frame = CGRect(origin: CGPoint(x: xOffset + indent, y: yOffset), size: sizeForItemLabelWithWidth(width - indent, indexPath: indexPath))
+            setLayoutAttributes(labelAttributes, forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, atIndexPath: indexPath)
+            
+            let cellAttributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+            cellAttributes.frame = CGRectMake(xOffset + indent, CGRectGetMaxY(labelAttributes.frame) + itemSpacing / 2, width - indent, height)
             setLayoutAttributes(cellAttributes, forItemAtIndexPath: indexPath)
-            return [cellAttributes]
+            
+            return [labelAttributes, cellAttributes]
         }
         
         for section in 0 ..< self.collectionView!.numberOfSections() {
@@ -142,10 +156,11 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             for item in 0 ..< self.collectionView!.numberOfItemsInSection(section) {
                 
                 let indexPath = NSIndexPath(forItem: item, inSection: section)
+                let indentLevel = indentLevelForIndexPath(indexPath)
                 switch itemTypeForIndexPath(indexPath) {
-                case .Text: addToLine(sideBySideItems(indexPath, textSize))
-                case .Checkbox: addToLine(sideBySideItems(indexPath, checkboxSize))
-                case .BigText: addToLine(stackedItems(indexPath, bigTextHeight))
+                case .Text: addToLine(sideBySideItems(indexPath, textSize, indentLevel))
+                case .Checkbox: addToLine(sideBySideItems(indexPath, checkboxSize, indentLevel))
+                case .BigText: addToLine(stackedItems(indexPath, bigTextHeight, indentLevel))
                 }
                 
                 yOffset = CGRectGetMaxY(commitLine()) + itemSpacing
@@ -178,6 +193,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
 }
 
 @objc protocol UICollectionViewDelegateSurveyLayout : UICollectionViewDelegateSEUILayout {
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, indentLevelForIndexPath indexPath: NSIndexPath!) -> Int
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String /* Cannot pass item type to @objc protocol */
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForItemLabelWithWidth labelWidth:CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth:CGFloat, section: Int) -> CGFloat

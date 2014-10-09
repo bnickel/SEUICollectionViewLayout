@@ -24,6 +24,8 @@
 		EB9C273E19E328BB00AB1695 /* survey.json in Resources */ = {isa = PBXBuildFile; fileRef = EB9C273D19E328BB00AB1695 /* survey.json */; };
 		EB9C274019E3308000AB1695 /* SurveySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C273F19E3308000AB1695 /* SurveySection.swift */; };
 		EB9C274219E330B500AB1695 /* SurveyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C274119E330B500AB1695 /* SurveyItem.swift */; };
+		EBC63E2419E5FBDA00A2C81E /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC63E2219E5FBDA00A2C81E /* LabelView.swift */; };
+		EBC63E2519E5FBDA00A2C81E /* LabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBC63E2319E5FBDA00A2C81E /* LabelView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		EB9C273D19E328BB00AB1695 /* survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = survey.json; sourceTree = "<group>"; };
 		EB9C273F19E3308000AB1695 /* SurveySection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveySection.swift; sourceTree = "<group>"; };
 		EB9C274119E330B500AB1695 /* SurveyItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyItem.swift; sourceTree = "<group>"; };
+		EBC63E2219E5FBDA00A2C81E /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		EBC63E2319E5FBDA00A2C81E /* LabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				EB264DD519E450F200377619 /* BigTextCell.xib */,
 				EB264DD819E4550200377619 /* TextCell.swift */,
 				EB264DD919E4550200377619 /* TextCell.xib */,
+				EBC63E2219E5FBDA00A2C81E /* LabelView.swift */,
+				EBC63E2319E5FBDA00A2C81E /* LabelView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -185,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB9C271B19E31DE700AB1695 /* Main.storyboard in Resources */,
+				EBC63E2519E5FBDA00A2C81E /* LabelView.xib in Resources */,
 				EB264DD219E3664A00377619 /* CheckboxCell.xib in Resources */,
 				EB9C273E19E328BB00AB1695 /* survey.json in Resources */,
 				EB9C272019E31DE700AB1695 /* LaunchScreen.xib in Resources */,
@@ -210,6 +217,7 @@
 				EB264DD119E3664A00377619 /* CheckboxCell.swift in Sources */,
 				EB9C273C19E3277C00AB1695 /* SurveyCollectionViewLayout.swift in Sources */,
 				EB9C271619E31DE700AB1695 /* AppDelegate.swift in Sources */,
+				EBC63E2419E5FBDA00A2C81E /* LabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
