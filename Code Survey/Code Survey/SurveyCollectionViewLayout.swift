@@ -98,6 +98,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         let width = round(fmin(CGRectGetWidth(collectionViewBounds) - 2 * margin, maxWidth))
         let xOffset:CGFloat = round(CGRectGetMidX(collectionViewBounds) - width / 2)
         var yOffset:CGFloat = margin
+        var yOffsetHidden:CGFloat = yOffset
         
         func commitAttributes(attributes:[UICollectionViewLayoutAttributes], #hidden: Bool) -> CGRect {
             var totalRect = CGRectNull
@@ -111,7 +112,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             return totalRect
         }
         
-        func sideBySideItems(indexPath:NSIndexPath, itemSize:CGSize, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
+        func sideBySideItems(indexPath:NSIndexPath, yOffset:CGFloat, itemSize:CGSize, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
             
             let indent = CGFloat(indentLevel) * itemSpacing * 2
             let labelSize = sizeForItemLabelWithWidth(width - itemSpacing - itemSize.width - indent, indexPath: indexPath)
@@ -130,7 +131,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             return [labelAttributes, cellAttributes]
         }
         
-        func stackedItems(indexPath:NSIndexPath, height:CGFloat, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
+        func stackedItems(indexPath:NSIndexPath, yOffset:CGFloat, height:CGFloat, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
             
             let indent = CGFloat(indentLevel) * itemSpacing * 2
             
@@ -152,15 +153,21 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
                 let indexPath = NSIndexPath(forItem: item, inSection: section)
                 let indentLevel = indentLevelForIndexPath(indexPath)
                 let hidden = shouldHideItemAtIndexPath(indexPath)
+                let offset = hidden ? yOffsetHidden : yOffset
                 
                 var attributes:[UICollectionViewLayoutAttributes]!
                 switch itemTypeForIndexPath(indexPath) {
-                case .Text:     attributes = sideBySideItems(indexPath, textSize, indentLevel)
-                case .Checkbox: attributes = sideBySideItems(indexPath, checkboxSize, indentLevel)
-                case .BigText:  attributes = stackedItems(indexPath, bigTextHeight, indentLevel)
+                case .Text:     attributes = sideBySideItems(indexPath, offset, textSize, indentLevel)
+                case .Checkbox: attributes = sideBySideItems(indexPath, offset, checkboxSize, indentLevel)
+                case .BigText:  attributes = stackedItems(indexPath, offset, bigTextHeight, indentLevel)
                 }
                 
-                yOffset = CGRectGetMaxY(commitAttributes(attributes, hidden: hidden)) + itemSpacing
+                let addedRect = commitAttributes(attributes, hidden: hidden)
+                yOffsetHidden = CGRectGetMaxY(addedRect) + itemSpacing
+                if !hidden {
+                    yOffset = yOffsetHidden
+                }
+                
             }
         }
         
