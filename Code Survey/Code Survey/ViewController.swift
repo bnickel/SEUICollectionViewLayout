@@ -27,6 +27,13 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         layout.bigTextHeight = 100
         layout.animateBoundsChanges = true
         
+        survey.hidingChangedCallback = {
+            [unowned self] in
+            self.collectionView.performBatchUpdates({ () -> Void in
+                layout.invalidateLayout()
+            }, completion: nil)
+        }
+        
         collectionView.registerNib(CheckboxCell.nib, forCellWithReuseIdentifier: ItemType.Checkbox.rawValue)
         collectionView.registerNib(BigTextCell.nib, forCellWithReuseIdentifier: ItemType.BigText.rawValue)
         collectionView.registerNib(TextCell.nib, forCellWithReuseIdentifier: ItemType.Text.rawValue)
@@ -91,6 +98,10 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, indentLevelForIndexPath indexPath: NSIndexPath!) -> Int {
         return surveyItem(indexPath).indent
+    }
+    
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, shouldHideItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        return surveyItem(indexPath).hidden
     }
 }
 

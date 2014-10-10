@@ -8,6 +8,8 @@
 
 import UIKit
 
+private var SurveyContext = 0
+
 class Survey: NSObject {
     
     let sections:[SurveySection]
@@ -32,6 +34,8 @@ class Survey: NSObject {
         return nil
     }
     
+    var hidingChangedCallback:(() -> ())?
+    
     var trackHiding:Bool = false {
         didSet {
             
@@ -48,6 +52,7 @@ class Survey: NSObject {
                 for section in sections {
                     for item in section.items {
                         item.startObservingWithObservables(observables)
+                        item.addObserver(self, forKeyPath: "hidden", options: nil, context: &SurveyContext)
                     }
                 }
                 
@@ -55,9 +60,22 @@ class Survey: NSObject {
                 for section in sections {
                     for item in section.items {
                         item.stopObserving()
+                        item.removeObserver(self, forKeyPath: "hidden", context: &SurveyContext)
                     }
                 }
             }
+        }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        if context == &SurveyContext {
+            
+            if let callback = hidingChangedCallback {
+                callback()
+            }
+            
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
     }
 }

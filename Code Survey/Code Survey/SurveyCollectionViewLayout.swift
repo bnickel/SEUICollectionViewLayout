@@ -73,6 +73,10 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         return ItemType(rawValue: collectionViewDelegate.collectionView(collectionView, layout: self, itemTypeForIndexPath: indexPath))!
     }
     
+    private func shouldHideItemAtIndexPath(indexPath: NSIndexPath) -> Bool {
+        return collectionViewDelegate.collectionView(collectionView, layout: self, shouldHideItemAtIndexPath: indexPath)
+    }
+    
     private func sizeForItemLabelWithWidth(labelWidth:CGFloat, indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(labelWidth, collectionViewDelegate.collectionView(collectionView, layout: self, heightForItemLabelWithWidth: labelWidth, atIndexPath: indexPath))
     }
@@ -95,26 +99,16 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         let xOffset:CGFloat = round(CGRectGetMidX(collectionViewBounds) - width / 2)
         var yOffset:CGFloat = margin
         
-        var line:[UICollectionViewLayoutAttributes] = []
-        var totalRect = CGRectNull
-        
-        func addToLine(attributes:[UICollectionViewLayoutAttributes]) {
+        func commitAttributes(attributes:[UICollectionViewLayoutAttributes], #hidden: Bool) -> CGRect {
+            var totalRect = CGRectNull
             for attribute in attributes {
-                line.append(attribute)
                 totalRect = CGRectUnion(totalRect, attribute.frame)
-            }
-        }
-        
-        func commitLine() -> CGRect {
-            if line.count > 0 {
-                let pair = (totalRect, line)
-                lines.append(pair)
-                line.removeAll(keepCapacity: true)
+                attribute.alpha = hidden ? 0 : 1
             }
             
-            let retValue = totalRect
-            totalRect = CGRectNull
-            return retValue
+            let pair = (totalRect, attributes)
+            lines.append(pair)
+            return totalRect
         }
         
         func sideBySideItems(indexPath:NSIndexPath, itemSize:CGSize, indentLevel:Int) -> [UICollectionViewLayoutAttributes] {
@@ -157,13 +151,16 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
                 
                 let indexPath = NSIndexPath(forItem: item, inSection: section)
                 let indentLevel = indentLevelForIndexPath(indexPath)
+                let hidden = shouldHideItemAtIndexPath(indexPath)
+                
+                var attributes:[UICollectionViewLayoutAttributes]!
                 switch itemTypeForIndexPath(indexPath) {
-                case .Text: addToLine(sideBySideItems(indexPath, textSize, indentLevel))
-                case .Checkbox: addToLine(sideBySideItems(indexPath, checkboxSize, indentLevel))
-                case .BigText: addToLine(stackedItems(indexPath, bigTextHeight, indentLevel))
+                case .Text:     attributes = sideBySideItems(indexPath, textSize, indentLevel)
+                case .Checkbox: attributes = sideBySideItems(indexPath, checkboxSize, indentLevel)
+                case .BigText:  attributes = stackedItems(indexPath, bigTextHeight, indentLevel)
                 }
                 
-                yOffset = CGRectGetMaxY(commitLine()) + itemSpacing
+                yOffset = CGRectGetMaxY(commitAttributes(attributes, hidden: hidden)) + itemSpacing
             }
         }
         
@@ -195,6 +192,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
 @objc protocol UICollectionViewDelegateSurveyLayout : UICollectionViewDelegateSEUILayout {
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, indentLevelForIndexPath indexPath: NSIndexPath!) -> Int
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String /* Cannot pass item type to @objc protocol */
+    func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, shouldHideItemAtIndexPath indexPath: NSIndexPath!) -> Bool
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForItemLabelWithWidth labelWidth:CGFloat, atIndexPath indexPath: NSIndexPath!) -> CGFloat
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth:CGFloat, section: Int) -> CGFloat
 }
