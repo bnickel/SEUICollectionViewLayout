@@ -101,10 +101,19 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         var yOffsetHidden:CGFloat = yOffset
         
         func commitAttributes(attributes:[UICollectionViewLayoutAttributes], #hidden: Bool) -> CGRect {
+            
             var totalRect = CGRectNull
             for attribute in attributes {
                 totalRect = CGRectUnion(totalRect, attribute.frame)
-                attribute.alpha = hidden ? 0 : 1
+            }
+            
+            if hidden {
+                for attribute in attributes {
+                    attribute.alpha = 0
+                    let translation = CATransform3DMakeTranslation(attribute.center.x - CGRectGetMidX(totalRect), attribute.center.y - CGRectGetMidY(totalRect), 0)
+                    let transform = CATransform3DMakeScale(0.1, 0.1, 1)
+                    attribute.transform3D = CATransform3DConcat(CATransform3DConcat(translation, transform), CATransform3DInvert(translation))
+                }
             }
             
             let pair = (totalRect, attributes)
@@ -167,7 +176,6 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
                 if !hidden {
                     yOffset = yOffsetHidden
                 }
-                
             }
         }
         
