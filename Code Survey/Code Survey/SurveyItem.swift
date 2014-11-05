@@ -10,17 +10,18 @@ import UIKit
 
 private var SurveyItemContext = 0
 
+enum ItemType: String {
+    case Checkbox = "checkbox"
+    case Text = "text"
+    case BigText = "big-text"
+}
+
 class SurveyItem: NSObject {
     
-    enum Type: String {
-        case Checkbox = "checkbox"
-        case Text = "text"
-        case BigText = "big-text"
-    }
     
     let identifier:String
     let label:String
-    let type:Type
+    let type:ItemType
     let indent:Int
     dynamic var textValue:String = ""
     dynamic var hidden:Bool = false
@@ -28,7 +29,7 @@ class SurveyItem: NSObject {
     private let dependencies:[String:String]
     private var observedItems:[SurveyItem] = []
     
-    init(identifier:String, label:String, type:Type = .Text, indent:Int = 0, dependencies:[String:String] = [:]) {
+    init(identifier:String, label:String, type:ItemType = .Text, indent:Int = 0, dependencies:[String:String] = [:]) {
         self.identifier = identifier
         self.label = label
         self.type = type
@@ -113,7 +114,7 @@ class SurveyItem: NSObject {
         if let identifier = dictionary["id"] as? String {
             if let label = dictionary["label"] as? String {
                 
-                let type = Type(rawValue: (dictionary["type"] as? String) ?? "") ?? .Text
+                let type = ItemType(rawValue: (dictionary["type"] as? String) ?? "") ?? .Text
                 let indent = (dictionary["indent"] as? Int) ?? 0
                 self.init(identifier:identifier, label:label, type:type, indent:indent, dependencies:SurveyItem.parseDependencies(dictionary["show-if"]))
                 return

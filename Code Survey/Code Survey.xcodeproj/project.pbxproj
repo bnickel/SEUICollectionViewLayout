@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		EB0EE09E19E3537B00B9BD1E /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0EE09D19E3537B00B9BD1E /* Survey.swift */; };
+		EB264DD119E3664A00377619 /* CheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB264DCF19E3664A00377619 /* CheckboxCell.swift */; };
+		EB264DD219E3664A00377619 /* CheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB264DD019E3664A00377619 /* CheckboxCell.xib */; };
+		EB264DD619E450F200377619 /* BigTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB264DD419E450F200377619 /* BigTextCell.swift */; };
+		EB264DD719E450F200377619 /* BigTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB264DD519E450F200377619 /* BigTextCell.xib */; };
+		EB264DDA19E4550200377619 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB264DD819E4550200377619 /* TextCell.swift */; };
+		EB264DDB19E4550200377619 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB264DD919E4550200377619 /* TextCell.xib */; };
 		EB9C271619E31DE700AB1695 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C271519E31DE700AB1695 /* AppDelegate.swift */; };
 		EB9C271819E31DE700AB1695 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C271719E31DE700AB1695 /* ViewController.swift */; };
 		EB9C271B19E31DE700AB1695 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9C271919E31DE700AB1695 /* Main.storyboard */; };
@@ -22,6 +28,12 @@
 
 /* Begin PBXFileReference section */
 		EB0EE09D19E3537B00B9BD1E /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		EB264DCF19E3664A00377619 /* CheckboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxCell.swift; sourceTree = "<group>"; };
+		EB264DD019E3664A00377619 /* CheckboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckboxCell.xib; sourceTree = "<group>"; };
+		EB264DD419E450F200377619 /* BigTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigTextCell.swift; sourceTree = "<group>"; };
+		EB264DD519E450F200377619 /* BigTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigTextCell.xib; sourceTree = "<group>"; };
+		EB264DD819E4550200377619 /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
+		EB264DD919E4550200377619 /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
 		EB9C271019E31DE700AB1695 /* Code Survey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Survey.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9C271419E31DE700AB1695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB9C271519E31DE700AB1695 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +61,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB264DCE19E365EC00377619 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB0EE09D19E3537B00B9BD1E /* Survey.swift */,
+				EB9C273F19E3308000AB1695 /* SurveySection.swift */,
+				EB9C274119E330B500AB1695 /* SurveyItem.swift */,
+				EB9C273D19E328BB00AB1695 /* survey.json */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		EB264DD319E3665300377619 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB264DCF19E3664A00377619 /* CheckboxCell.swift */,
+				EB264DD019E3664A00377619 /* CheckboxCell.xib */,
+				EB264DD419E450F200377619 /* BigTextCell.swift */,
+				EB264DD519E450F200377619 /* BigTextCell.xib */,
+				EB264DD819E4550200377619 /* TextCell.swift */,
+				EB264DD919E4550200377619 /* TextCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		EB9C270719E31DE600AB1695 = {
 			isa = PBXGroup;
 			children = (
@@ -69,17 +105,15 @@
 			isa = PBXGroup;
 			children = (
 				EB9C271519E31DE700AB1695 /* AppDelegate.swift */,
+				EB9C271919E31DE700AB1695 /* Main.storyboard */,
 				EB9C271719E31DE700AB1695 /* ViewController.swift */,
 				EB9C273B19E3277C00AB1695 /* SurveyCollectionViewLayout.swift */,
-				EB9C271919E31DE700AB1695 /* Main.storyboard */,
-				EB0EE09D19E3537B00B9BD1E /* Survey.swift */,
-				EB9C273F19E3308000AB1695 /* SurveySection.swift */,
-				EB9C274119E330B500AB1695 /* SurveyItem.swift */,
+				EB264DD319E3665300377619 /* Views */,
+				EB264DCE19E365EC00377619 /* Model */,
 				EB9C271C19E31DE700AB1695 /* Images.xcassets */,
 				EB9C271E19E31DE700AB1695 /* LaunchScreen.xib */,
 				EB9C271319E31DE700AB1695 /* Supporting Files */,
 				EB9C273519E326E200AB1695 /* Code Survey-Bridging-Header.h */,
-				EB9C273D19E328BB00AB1695 /* survey.json */,
 			);
 			path = "Code Survey";
 			sourceTree = "<group>";
@@ -151,9 +185,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB9C271B19E31DE700AB1695 /* Main.storyboard in Resources */,
+				EB264DD219E3664A00377619 /* CheckboxCell.xib in Resources */,
 				EB9C273E19E328BB00AB1695 /* survey.json in Resources */,
 				EB9C272019E31DE700AB1695 /* LaunchScreen.xib in Resources */,
+				EB264DDB19E4550200377619 /* TextCell.xib in Resources */,
 				EB9C271D19E31DE700AB1695 /* Images.xcassets in Resources */,
+				EB264DD719E450F200377619 /* BigTextCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +204,10 @@
 				EB9C271819E31DE700AB1695 /* ViewController.swift in Sources */,
 				EB9C274019E3308000AB1695 /* SurveySection.swift in Sources */,
 				EB9C274219E330B500AB1695 /* SurveyItem.swift in Sources */,
+				EB264DD619E450F200377619 /* BigTextCell.swift in Sources */,
+				EB264DDA19E4550200377619 /* TextCell.swift in Sources */,
 				EB0EE09E19E3537B00B9BD1E /* Survey.swift in Sources */,
+				EB264DD119E3664A00377619 /* CheckboxCell.swift in Sources */,
 				EB9C273C19E3277C00AB1695 /* SurveyCollectionViewLayout.swift in Sources */,
 				EB9C271619E31DE700AB1695 /* AppDelegate.swift in Sources */,
 			);
