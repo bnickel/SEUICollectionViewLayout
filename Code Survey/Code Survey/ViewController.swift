@@ -48,6 +48,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.layer.sublayerTransform = perspective
         
         fixAnimations(top:150, bottom:300)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func surveySection(section:Int) -> SurveySection {
@@ -129,6 +136,49 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         indicatorInset.top += top
         indicatorInset.bottom += bottom
         collectionView.scrollIndicatorInsets = indicatorInset
+    }
+    
+    var keyboardInsetAdjustment:CGFloat = 0 {
+        didSet(oldValue) {
+            let difference = keyboardInsetAdjustment - oldValue
+            
+            var contentInset = collectionView.contentInset
+            contentInset.bottom += difference
+            collectionView.contentInset = contentInset
+            
+            var indicatorInset = collectionView.scrollIndicatorInsets
+            indicatorInset.bottom += difference
+            collectionView.scrollIndicatorInsets = indicatorInset
+        }
+    }
+    
+    func keyboardWillShow(notification:NSNotification) {
+        if let size = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size {
+            keyboardInsetAdjustment = size.height
+            
+            let activeCells = collectionView.visibleCells().filter({ cell in
+                
+                if let textCell = cell as? TextCell {
+                    if textCell.textField.isFirstResponder() {
+                        return true
+                    }
+                } else if let bigTextCell = cell as? BigTextCell {
+                    if bigTextCell.textView.isFirstResponder() {
+                        return true
+                    }
+                }
+                
+                return false
+            })
+            
+            if let cell = activeCells.first as? UICollectionViewCell {
+                collectionView.scrollRectToVisible(cell.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification:NSNotification) {
+        keyboardInsetAdjustment = 0
     }
 }
 
