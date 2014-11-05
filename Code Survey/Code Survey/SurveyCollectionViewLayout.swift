@@ -155,6 +155,13 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         
         for section in 0 ..< self.collectionView!.numberOfSections() {
             
+            let headerIndexPath = NSIndexPath(forItem: NSNotFound, inSection: section)
+            let headerAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SurveyCollectionViewSectionHeader, withIndexPath: headerIndexPath)
+            headerAttributes.frame = CGRect(origin: CGPointMake(xOffset, yOffset), size: sizeForSectionHeadingWithWidth(width, section: section))
+            setLayoutAttributes(headerAttributes, forSupplementaryViewOfKind: SurveyCollectionViewSectionHeader, atIndexPath: headerIndexPath)
+            let headerRect = commitAttributes([headerAttributes], hidden: false)
+            yOffset = CGRectGetMaxY(headerRect) + itemSpacing
+            
             for item in 0 ..< self.collectionView!.numberOfItemsInSection(section) {
                 
                 let indexPath = NSIndexPath(forItem: item, inSection: section)

@@ -65,5 +65,81 @@
         "show-if": "lang-other=true"
       },
     ]
+  },
+  {
+    "name": "Editors",
+    "questions": [
+      {
+        "id": "editor-cmdln",
+        "label": "Hardcore",
+        "type": "checkbox"
+      },
+      {
+        "id": "editor-cmdln-emacs",
+        "label": "Emacs",
+        "type": "checkbox",
+        "show-if": "editor-cmdln=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-cmdln-vim",
+        "label": "Vim",
+        "type": "checkbox",
+        "show-if": "editor-cmdln=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-ide",
+        "label": "IDE",
+        "type": "checkbox"
+      },
+      {
+        "id": "editor-ide-xcode",
+        "label": "Xcode",
+        "type": "checkbox",
+        "show-if": "editor-ide=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-ide-jetbrains",
+        "label": "Jetbrains (any)",
+        "type": "checkbox",
+        "show-if": "editor-ide=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-ide-eclipse",
+        "label": "Eclipse (any)",
+        "type": "checkbox",
+        "show-if": "editor-ide=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-ide-vs",
+        "label": "Visual Studio",
+        "type": "checkbox",
+        "show-if": "editor-ide=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-general",
+        "label": "General",
+        "type": "checkbox"
+      },
+      {
+        "id": "editor-general-sublime",
+        "label": "Sublime",
+        "type": "checkbox",
+        "show-if": "editor-general=true",
+        "indent": 1
+      },
+      {
+        "id": "editor-general-atom",
+        "label": "Atom",
+        "type": "checkbox",
+        "show-if": "editor-general=true",
+        "indent": 1
+      }
+    ]
   }
 ]

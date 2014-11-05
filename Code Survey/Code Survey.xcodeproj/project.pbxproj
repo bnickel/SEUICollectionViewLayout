@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB062AE01A0AA3E200C8D880 /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB062ADE1A0AA3E200C8D880 /* HeadingView.swift */; };
+		EB062AE11A0AA3E200C8D880 /* HeadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB062ADF1A0AA3E200C8D880 /* HeadingView.xib */; };
 		EB0EE09E19E3537B00B9BD1E /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0EE09D19E3537B00B9BD1E /* Survey.swift */; };
 		EB264DD119E3664A00377619 /* CheckboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB264DCF19E3664A00377619 /* CheckboxCell.swift */; };
 		EB264DD219E3664A00377619 /* CheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB264DD019E3664A00377619 /* CheckboxCell.xib */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB062ADE1A0AA3E200C8D880 /* HeadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
+		EB062ADF1A0AA3E200C8D880 /* HeadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadingView.xib; sourceTree = "<group>"; };
 		EB0EE09D19E3537B00B9BD1E /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		EB264DCF19E3664A00377619 /* CheckboxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxCell.swift; sourceTree = "<group>"; };
 		EB264DD019E3664A00377619 /* CheckboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckboxCell.xib; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				EB264DD919E4550200377619 /* TextCell.xib */,
 				EBC63E2219E5FBDA00A2C81E /* LabelView.swift */,
 				EBC63E2319E5FBDA00A2C81E /* LabelView.xib */,
+				EB062ADE1A0AA3E200C8D880 /* HeadingView.swift */,
+				EB062ADF1A0AA3E200C8D880 /* HeadingView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 				EB264DDB19E4550200377619 /* TextCell.xib in Resources */,
 				EB9C271D19E31DE700AB1695 /* Images.xcassets in Resources */,
 				EB264DD719E450F200377619 /* BigTextCell.xib in Resources */,
+				EB062AE11A0AA3E200C8D880 /* HeadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +220,7 @@
 				EB9C274219E330B500AB1695 /* SurveyItem.swift in Sources */,
 				EB264DD619E450F200377619 /* BigTextCell.swift in Sources */,
 				EB264DDA19E4550200377619 /* TextCell.swift in Sources */,
+				EB062AE01A0AA3E200C8D880 /* HeadingView.swift in Sources */,
 				EB0EE09E19E3537B00B9BD1E /* Survey.swift in Sources */,
 				EB264DD119E3664A00377619 /* CheckboxCell.swift in Sources */,
 				EB9C273C19E3277C00AB1695 /* SurveyCollectionViewLayout.swift in Sources */,

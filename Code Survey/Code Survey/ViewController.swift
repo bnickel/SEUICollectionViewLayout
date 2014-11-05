@@ -41,6 +41,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         collectionView.registerNib(BigTextCell.nib, forCellWithReuseIdentifier: ItemType.BigText.rawValue)
         collectionView.registerNib(TextCell.nib, forCellWithReuseIdentifier: ItemType.Text.rawValue)
         collectionView.registerNib(LabelView.nib, forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withReuseIdentifier: SurveyCollectionViewItemLabel)
+        collectionView.registerNib(HeadingView.nib, forSupplementaryViewOfKind: SurveyCollectionViewSectionHeader, withReuseIdentifier: SurveyCollectionViewSectionHeader)
         collectionView.layer.sublayerTransform = perspective
     }
     
@@ -70,14 +71,16 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: kind, forIndexPath: indexPath) as UICollectionReusableView
+        
         switch kind {
         case SurveyCollectionViewItemLabel:
-            let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: kind, forIndexPath: indexPath) as LabelView
-            view.text = surveyItem(indexPath).label
-            return view
-        default:
-            assertionFailure("Unexpected supplementary element kind: \(kind)")
+            (view as LabelView).text = surveyItem(indexPath).label
+        case SurveyCollectionViewSectionHeader:
+            (view as HeadingView).text = surveySection(indexPath.section).heading
+        default: assertionFailure("Unexpected supplementary element kind: \(kind)")
         }
+        return view
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SEUICollectionViewLayout!, uniqueIdentifierForSection section: UInt) -> NSCopying! {
@@ -93,7 +96,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, heightForSectionHeadingWithWidth labelWidth: CGFloat, section: Int) -> CGFloat {
-        return 10
+        return HeadingView.heightForText(surveySection(section).heading, width: labelWidth)
     }
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, itemTypeForIndexPath indexPath: NSIndexPath!) -> String {
