@@ -12,16 +12,19 @@ import UIKit
     var item:SurveyItem! {get set}
 }
 
-class ViewController: UICollectionViewController, UICollectionViewDelegateSurveyLayout {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateSurveyLayout {
     
     var survey:Survey!
+    @IBOutlet weak var collectionView:UICollectionView!
+    @IBOutlet weak var collectionViewTopConstraint:NSLayoutConstraint!
+    @IBOutlet weak var collectionViewBottomConstraint:NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         survey = Survey(URL: NSBundle.mainBundle().URLForResource("survey", withExtension: "json")!)
         survey.trackHiding = true
         
-        let layout = collectionViewLayout as SurveyCollectionViewLayout
+        let layout = collectionView.collectionViewLayout as SurveyCollectionViewLayout
         layout.checkboxSize = CheckboxCell.preferredSize
         layout.textSize = CGSize(width: 200, height: TextCell.preferredHeight)
         layout.bigTextHeight = 100
@@ -43,6 +46,8 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         collectionView.registerNib(LabelView.nib, forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withReuseIdentifier: SurveyCollectionViewItemLabel)
         collectionView.registerNib(HeadingView.nib, forSupplementaryViewOfKind: SurveyCollectionViewSectionHeader, withReuseIdentifier: SurveyCollectionViewSectionHeader)
         collectionView.layer.sublayerTransform = perspective
+        
+        fixAnimations(top:150, bottom:300)
     }
     
     func surveySection(section:Int) -> SurveySection {
@@ -53,15 +58,15 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         return survey.sections[indexPath.section].items[indexPath.item]
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return survey.sections.count
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return surveySection(section).items.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let item = surveyItem(indexPath)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(item.type.rawValue, forIndexPath: indexPath) as UICollectionViewCell
@@ -70,7 +75,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: kind, forIndexPath: indexPath) as UICollectionReusableView
         
         switch kind {
@@ -109,6 +114,21 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
     
     func collectionView(collectionView: UICollectionView!, layout collectionViewLayout: SurveyCollectionViewLayout!, shouldHideItemAtIndexPath indexPath: NSIndexPath!) -> Bool {
         return surveyItem(indexPath).hidden
+    }
+    
+    func fixAnimations(#top:CGFloat, bottom:CGFloat) {
+        collectionViewTopConstraint.constant = -top
+        collectionViewBottomConstraint.constant = -bottom
+        
+        var contentInset = collectionView.contentInset
+        contentInset.top += top
+        contentInset.bottom += bottom
+        collectionView.contentInset = contentInset
+        
+        var indicatorInset = collectionView.scrollIndicatorInsets
+        indicatorInset.top += top
+        indicatorInset.bottom += bottom
+        collectionView.scrollIndicatorInsets = indicatorInset
     }
 }
 

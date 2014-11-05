@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QBf-kY-9h7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QBf-kY-9h7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Survey-->
         <scene sceneID="kf2-8K-B9v">
             <objects>
-                <collectionViewController title="Survey" id="Gao-EW-ya4" customClass="ViewController" customModule="Code_Survey" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" id="S33-3o-XqQ">
+                <viewController title="Survey" id="Gao-EW-ya4" customClass="ViewController" customModule="Code_Survey" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MdX-U5-THK"/>
+                        <viewControllerLayoutGuide type="bottom" id="FT8-4B-yFE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wYe-hV-th7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UgR-oN-l5M">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewLayout key="collectionViewLayout" id="1Yn-9D-Q64" customClass="SurveyCollectionViewLayout" customModule="Code_Survey" customModuleProvider="target"/>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gao-EW-ya4" id="Ys7-QP-9S5"/>
+                                    <outlet property="delegate" destination="Gao-EW-ya4" id="hXI-rL-GZU"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="kgM-yS-07b" customClass="SurveyCollectionViewLayout" customModule="Code_Survey" customModuleProvider="target"/>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="Gao-EW-ya4" id="s2Y-hR-uRl"/>
-                            <outlet property="delegate" destination="Gao-EW-ya4" id="mMH-KC-O7C"/>
-                        </connections>
-                    </collectionView>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="UgR-oN-l5M" secondAttribute="trailing" id="cdR-yL-sG3"/>
+                            <constraint firstAttribute="bottom" secondItem="UgR-oN-l5M" secondAttribute="bottom" id="d94-Dg-6a9"/>
+                            <constraint firstItem="UgR-oN-l5M" firstAttribute="leading" secondItem="wYe-hV-th7" secondAttribute="leading" id="oz0-Gz-p1Z"/>
+                            <constraint firstItem="UgR-oN-l5M" firstAttribute="top" secondItem="wYe-hV-th7" secondAttribute="top" id="r58-QJ-SRL"/>
+                        </constraints>
+                    </view>
                     <navigationItem key="navigationItem" title="What do you code?" id="iC8-YI-WlI"/>
-                </collectionViewController>
+                    <connections>
+                        <outlet property="collectionView" destination="UgR-oN-l5M" id="qPp-lg-Z5d"/>
+                        <outlet property="collectionViewBottomConstraint" destination="d94-Dg-6a9" id="jAd-2c-aCj"/>
+                        <outlet property="collectionViewTopConstraint" destination="r58-QJ-SRL" id="EpR-U4-9SA"/>
+                    </connections>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9i-ID-yVT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="608" y="593"/>
