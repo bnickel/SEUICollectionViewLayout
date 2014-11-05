@@ -110,9 +110,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
             if hidden {
                 for attribute in attributes {
                     attribute.alpha = 0
-                    let translation = CATransform3DMakeTranslation(attribute.center.x - CGRectGetMidX(totalRect), attribute.center.y - CGRectGetMidY(totalRect), 0)
-                    let transform = CATransform3DMakeScale(0.1, 0.1, 1)
-                    attribute.transform3D = CATransform3DConcat(CATransform3DConcat(translation, transform), CATransform3DInvert(translation))
+                    attribute.transform3D = CATransform3DMakeTranslation(0, 0, 250)
                 }
             }
             

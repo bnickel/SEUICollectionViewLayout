@@ -34,10 +34,14 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateSurvey
             }, completion: nil)
         }
         
+        var perspective = CATransform3DIdentity
+        perspective.m34 = 1 / -500
+        
         collectionView.registerNib(CheckboxCell.nib, forCellWithReuseIdentifier: ItemType.Checkbox.rawValue)
         collectionView.registerNib(BigTextCell.nib, forCellWithReuseIdentifier: ItemType.BigText.rawValue)
         collectionView.registerNib(TextCell.nib, forCellWithReuseIdentifier: ItemType.Text.rawValue)
         collectionView.registerNib(LabelView.nib, forSupplementaryViewOfKind: SurveyCollectionViewItemLabel, withReuseIdentifier: SurveyCollectionViewItemLabel)
+        collectionView.layer.sublayerTransform = perspective
     }
     
     func surveySection(section:Int) -> SurveySection {
