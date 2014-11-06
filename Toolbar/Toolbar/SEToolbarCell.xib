@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9Yb-jp-j3C" customClass="SEToolbarCell">
+            <rect key="frame" x="0.0" y="0.0" width="227" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="227" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWv-UF-06q">
+                        <rect key="frame" x="0.0" y="0.0" width="227" height="69"/>
+                        <state key="normal" title="Button">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="DWv-UF-06q" secondAttribute="trailing" id="Di4-np-fpr"/>
+                <constraint firstItem="DWv-UF-06q" firstAttribute="top" secondItem="9Yb-jp-j3C" secondAttribute="top" id="Mb7-f0-yAI"/>
+                <constraint firstItem="DWv-UF-06q" firstAttribute="leading" secondItem="9Yb-jp-j3C" secondAttribute="leading" id="Q31-vS-zvq"/>
+                <constraint firstAttribute="bottom" secondItem="DWv-UF-06q" secondAttribute="bottom" id="Ybg-uF-avH"/>
+            </constraints>
+            <size key="customSize" width="227" height="69"/>
+            <connections>
+                <outlet property="button" destination="DWv-UF-06q" id="FCr-SP-cTt"/>
+            </connections>
+            <point key="canvasLocation" x="948.5" y="490.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

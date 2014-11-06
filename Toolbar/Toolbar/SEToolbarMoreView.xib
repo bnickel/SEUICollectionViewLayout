@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ynu-d4-ea6" customClass="SEToolbarMoreView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TzL-wo-LoP">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <state key="normal" title="More...">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="TzL-wo-LoP" secondAttribute="trailing" id="0IJ-L8-OoJ"/>
+                <constraint firstItem="TzL-wo-LoP" firstAttribute="leading" secondItem="Ynu-d4-ea6" secondAttribute="leading" id="NsE-qz-g6v"/>
+                <constraint firstItem="TzL-wo-LoP" firstAttribute="top" secondItem="Ynu-d4-ea6" secondAttribute="top" id="erI-zP-r1e"/>
+                <constraint firstAttribute="bottom" secondItem="TzL-wo-LoP" secondAttribute="bottom" id="mwP-bn-Jhx"/>
+            </constraints>
+            <connections>
+                <outlet property="button" destination="TzL-wo-LoP" id="MZw-F6-8em"/>
+            </connections>
+            <point key="canvasLocation" x="64" y="412"/>
+        </collectionReusableView>
+    </objects>
+</document>

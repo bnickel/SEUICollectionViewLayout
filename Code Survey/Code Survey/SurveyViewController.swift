@@ -12,7 +12,7 @@ import UIKit
     var item:SurveyItem! {get set}
 }
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateSurveyLayout {
+class SurveyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateSurveyLayout {
     
     var survey:Survey!
     @IBOutlet weak var collectionView:UICollectionView!

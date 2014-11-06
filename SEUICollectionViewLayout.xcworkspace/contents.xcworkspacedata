@@ -5,6 +5,9 @@
       location = "group:Code Survey/Code Survey.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Toolbar/Toolbar.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:SEUICollectionViewLayout/SEUICollectionViewLayout.xcodeproj">
    </FileRef>
 </Workspace>
