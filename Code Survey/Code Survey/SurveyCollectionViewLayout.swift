@@ -16,38 +16,50 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
     // MARK: - Properties
     
     var checkboxSize:CGSize = CGSizeMake(10, 10) {
-        didSet {
-            invalidateLayout()
+        didSet(oldValue) {
+            if checkboxSize != oldValue {
+                invalidateLayout()
+            }
         }
     }
     
     var textSize:CGSize = CGSizeMake(100, 50) {
-        didSet {
-            invalidateLayout()
+        didSet(oldValue) {
+            if textSize != oldValue {
+                invalidateLayout()
+            }
         }
     }
     
     var bigTextHeight:CGFloat = 50 {
-        didSet {
-            invalidateLayout()
+        didSet(oldValue) {
+            if bigTextHeight != oldValue {
+                invalidateLayout()
+            }
         }
     }
     
     var itemSpacing:CGFloat = 10 {
-        didSet {
-            invalidateLayout()
+        didSet(oldValue) {
+            if itemSpacing != oldValue {
+                invalidateLayout()
+            }
         }
     }
     
     var margin:CGFloat = 10 {
-        didSet {
-            invalidateLayout()
+        didSet(oldValue) {
+            if margin != oldValue {
+                invalidateLayout()
+            }
         }
     }
     
     var maxWidth:CGFloat = 500 {
-        didSet {
-            invalidateLayout()
+        didSet(oldValue) {
+            if maxWidth != oldValue {
+                invalidateLayout()
+            }
         }
     }
     
@@ -87,7 +99,7 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
     
     // MARK: - Layout methods
     
-    var lines:[(CGRect, [UICollectionViewLayoutAttributes])] = []
+    private var lines:[(CGRect, [UICollectionViewLayoutAttributes])] = []
     
     override func prepareLayout() {
         beginPreparingLayout()
