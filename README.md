@@ -47,3 +47,10 @@ This layout has two properties, minimum item spacing and the maximum number of i
 <center>![Screenshot of narrow toolbar](images/se-toolbar-narrow.png)</center>
 
 <center>![Screenshot of wide toolbar](images/se-toolbar-wide.png)</center>
+
+Installation
+------------
+
+```ruby
+pod 'SEUICollectionViewLayout'
+```
