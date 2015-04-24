@@ -69,11 +69,11 @@ class SurveyCollectionViewLayout: SEUICollectionViewLayout {
         if let delegate = collectionView?.delegate as? UICollectionViewDelegateSurveyLayout {
             return delegate
         } else if collectionView == nil {
-            assertionFailure("No collection view.")
+            preconditionFailure("No collection view.")
         } else if collectionView?.delegate == nil {
-            assertionFailure("No collection view delegate.")
+            preconditionFailure("No collection view delegate.")
         } else {
-            assertionFailure("Collection view delegate does not conform to UICollectionViewDelegateSurveyLayout")
+            preconditionFailure("Collection view delegate does not conform to UICollectionViewDelegateSurveyLayout")
         }
     }
     

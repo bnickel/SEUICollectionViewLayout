@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let SizingHeadingView:HeadingView = HeadingView.nib!.instantiateWithOwner(nil, options: nil)[0] as HeadingView
+private let SizingHeadingView:HeadingView = HeadingView.nib!.instantiateWithOwner(nil, options: nil)[0] as! HeadingView
 
 class HeadingView: UICollectionReusableView {
     

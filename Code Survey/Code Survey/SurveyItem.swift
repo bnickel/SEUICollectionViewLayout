@@ -66,7 +66,7 @@ class SurveyItem: NSObject {
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &SurveyItemContext {
             
-            let item = object as SurveyItem
+            let item = object as! SurveyItem
             if item.textValue != dependencies[item.identifier]! {
                 hidden = true
                 return

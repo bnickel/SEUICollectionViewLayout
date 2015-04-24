@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let SizingLabelView:LabelView = LabelView.nib!.instantiateWithOwner(nil, options: nil)[0] as LabelView
+private let SizingLabelView:LabelView = LabelView.nib!.instantiateWithOwner(nil, options: nil)[0] as! LabelView
 
 class LabelView: UICollectionReusableView {
 

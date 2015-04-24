@@ -24,7 +24,7 @@ class SurveyViewController: UIViewController, UICollectionViewDataSource, UIColl
         survey = Survey(URL: NSBundle.mainBundle().URLForResource("survey", withExtension: "json")!)
         survey.trackHiding = true
         
-        let layout = collectionView.collectionViewLayout as SurveyCollectionViewLayout
+        let layout = collectionView.collectionViewLayout as! SurveyCollectionViewLayout
         layout.checkboxSize = CheckboxCell.preferredSize
         layout.textSize = CGSize(width: 200, height: TextCell.preferredHeight)
         layout.bigTextHeight = 100
@@ -76,20 +76,20 @@ class SurveyViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let item = surveyItem(indexPath)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(item.type.rawValue, forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(item.type.rawValue, forIndexPath: indexPath) as! UICollectionViewCell
         
-        (cell as ItemHolder).item = surveyItem(indexPath)
+        (cell as! ItemHolder).item = surveyItem(indexPath)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: kind, forIndexPath: indexPath) as UICollectionReusableView
+        let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: kind, forIndexPath: indexPath) as! UICollectionReusableView
         
         switch kind {
         case SurveyCollectionViewItemLabel:
-            (view as LabelView).text = surveyItem(indexPath).label
+            (view as! LabelView).text = surveyItem(indexPath).label
         case SurveyCollectionViewSectionHeader:
-            (view as HeadingView).text = surveySection(indexPath.section).heading
+            (view as! HeadingView).text = surveySection(indexPath.section).heading
         default: assertionFailure("Unexpected supplementary element kind: \(kind)")
         }
         return view
