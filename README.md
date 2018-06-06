@@ -29,7 +29,7 @@ survey.hidingChangedCallback = {
 
 When `performLayout()` is called it calls `collectionView:layout:shouldHideItemAtIndexPath:` and applies the hidden style.
 
-<center>![Screenshot of code survey](images/code-survey.gif)</center>
+![Screenshot of code survey](images/code-survey.gif)
 
 Toolbar Demo
 ------------
@@ -40,13 +40,13 @@ This layout has two properties, minimum item spacing and the maximum number of i
 
 `prepareLayout` first tries to see if everything will fit.  If not it takes items up to the maximum and sees how many will fit if the "More" button is visible.  It then takes the set of visible layout attributes and arranges them on the screen.  It also provides a readonly property `numberOfVisibleItems` for use by the More option.
 
-<center>![Screenshot of toolbar](images/toolbar.gif)</center>
+![Screenshot of toolbar](images/toolbar.gif)
 
-<center>**Toolbar in Stack Exchange.app**</center>
+**Toolbar in Stack Exchange.app**
 
-<center>![Screenshot of narrow toolbar](images/se-toolbar-narrow.png)</center>
+![Screenshot of narrow toolbar](images/se-toolbar-narrow.png)
 
-<center>![Screenshot of wide toolbar](images/se-toolbar-wide.png)</center>
+![Screenshot of wide toolbar](images/se-toolbar-wide.png)
 
 Installation
 ------------
